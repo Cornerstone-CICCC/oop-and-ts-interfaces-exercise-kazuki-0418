@@ -2,23 +2,27 @@
 // Create an interface for a "House" object with a nested "address" object that includes an optional "city" (string).
 // Use optional chaining to safely access the "city" and log it to the console.
 
-interface Address {
-
-}
-
-interface House {
-
-}
-
-const myHouse = {
-  address: {
-    city: "New York"
-  }
+type Address = {
+  city?: string;
 };
 
-console.log( );
+type House = {
+  address: Address;
+};
+
+const myHouse: House = {
+  address: {
+    city: "New York",
+  },
+};
+
+console.log(myHouse.address.city ?? "City not available");
 // Expected Output: "New York"
 
-const noCityHouse = {};
-console.log( );
+const noCityHouse: House = {
+  address: {
+    city: undefined,
+  },
+};
+console.log(noCityHouse.address?.city ?? "City not available");
 // Expected Output: "City not available"
